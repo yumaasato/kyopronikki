@@ -1,0 +1,7 @@
+begin
+d(1,1) ← c(1,1);
+for j ←2 until n do
+  d(1,j) ← d(1,j-1) + c(1,j)
+for i ← 2 until m do
+  for j ← 1 until n do
+    d(i,j) ← min{d(i-1,j-1),d(i-1,j),d(i,j-1)}

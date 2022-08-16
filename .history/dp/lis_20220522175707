@@ -1,0 +1,8 @@
+LIS()
+  L[0] = A[0]
+  length = 1
+  for i = 1 to n-1
+    if L[length] < A[i]
+      L[length++] = A[i]
+    else
+      L[j] (j = 0,1,...,length-1)の中でA[i]以上となる

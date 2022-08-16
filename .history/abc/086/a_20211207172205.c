@@ -1,0 +1,2 @@
+// product
+#include <stdio.h>

@@ -1,0 +1,5 @@
+LIS()
+  L[0] = A[0]
+  length = 1
+  for i = 1 to n-1
+    if L[length] < 
