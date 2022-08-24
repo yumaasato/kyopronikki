@@ -7,10 +7,7 @@ using namespace std;
 
 int main() {
   string s,t;
-  cin >> s;
-  cin >> t;
-  rep(i,0,s.size()) {
-    if(s[i] == s[i+1]) s.insert(i+1,s[i]);
-  }
-
+  cin >> s >> t;
+  vector<pair<string,int>>
+  
 }
