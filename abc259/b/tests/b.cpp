@@ -8,7 +8,7 @@ using namespace std;
 int main() {
   double a, b, d; cin >> a >> b >> d;
 
-  double r = hypot(a,b);
+  double r = sqrt(a*a+b*b);
   double degree = atan2(b,a);
 
   degree += d * acos(-1.0) / 180.0; // d * π/180.0
@@ -18,5 +18,6 @@ int main() {
   double y = r * sin(degree);
 
   cout << fixed << setprecision(10) << x << " " << y << endl;
+  // 出力はprintf("%.10f %.10f\n", x,y); でも可
 }
 
