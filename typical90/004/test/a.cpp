@@ -7,10 +7,10 @@ typedef long long ll;
 
 int main() {
   int h,w; cin >> h >> w;
-  vector<vector<int>> a(h,vector<int>(w));
+  vector<vector<int> > a(h,vector<int>(w));
   rep(i,0,h)rep(j,0,w) cin >> a.at(i).at(j);
 
-  vector<vector<int>> b(h,vector<int>(w));
+  vector<vector<int> > b(h,vector<int>(w));
   vector<int> row(w,0);
   vector<int> col(h,0);
   rep(i,0,h)rep(j,0,w) {

@@ -6,6 +6,7 @@ typedef long long ll;
 using namespace std;
 using P = pair<char, int>;
 
+// ランレングス圧縮
 vector<P> rle(const string& s) {
   vector<P> res;
   for(char c: s) {
@@ -33,7 +34,6 @@ bool solve() {
   }
   return true;
 }
-
 
 int main() {
   if(solve()) cout << "Yes" << endl;

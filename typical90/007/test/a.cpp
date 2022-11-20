@@ -5,7 +5,7 @@ using namespace std;
 #define fore(i,a) for(auto &i:a)
 typedef long long ll;
 // 無限大を表す値
-const long long INF = 1LL << 60;
+const ll INF = 1LL << 60;
 
 int main() {
   int n,q; cin >> n;
@@ -16,13 +16,13 @@ int main() {
   cin >> q;
 
   rep(i,0,q) {
-    long long b;
+    ll b;
     cin >> b;
     // はじめてb.at(i)以上の値をとるaのindexを返す
     int index = lower_bound(a.begin(), a.end(), b) - a.begin();
 
     // a[j-1]とa[j]を比較する index=0,nの場合に範囲外参照が発生するので注意
-    long long res = INF;
+    ll res = INF;
     if (index < n) res = min(res, abs(b-a[index]));
     if (index > 0) res = min(res, abs(b-a[index-1]));
 

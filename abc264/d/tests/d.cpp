@@ -15,9 +15,7 @@ int main() {
 
   while(!q.empty()) {
     // キューから頂点を取り出す
-    string current = q.front();
-    q.pop();
-    
+    string current = q.front(); q.pop();
     if(current=="atcoder") {
       cout << mp[current] << "\n";
       return 0;
@@ -32,4 +30,5 @@ int main() {
       }
     }
   }
+  return 0;
 }

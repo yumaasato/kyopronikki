@@ -2,26 +2,32 @@
 using namespace std;
 #define rep(i,a,b) for(int i=a;i<b;i++)
 #define rrep(i,a,b) for(int i=a;i<=b;i++)
+#define drep(i,a,b) for(int i=a;i>=b;i--)
 #define fore(i,a) for(auto &i:a)
+#define all(x) x.begin(), x.end()
 typedef long long ll;
+const ll INF = 1000000000000000000LL;
+const int inf = 1e9+7;
 
-double getAngle(double xa, double ya, double xb, double yb, double xc, double yc) {
-    double VectorAB = sqrt((xb - xa) * (xb - xa) + (yb - ya) * (yb - ya));
-    double VectorAC = sqrt((xc - xa) * (xc - xa) + (yc - ya) * (yc - ya));
-    double Naiseki = (xb - xa) * (xc - xa) + (yb - ya) * (yc - ya);
-    double cosTheta = Naiseki / (VectorAB * VectorAC);
-    return acos(cosTheta) * 180.0 / acos(-1.0);
+int flag(double ax, double ay, double bx, double by, double cx, double cy) {
+  int gaiseki = (bx - ax)*(cy - ay) - (cx - ax)*(by - ay);
+  if(gaiseki > 0) return 1;
+  else return 0;
 }
 
 int main() {
   double ax,ay,bx,by,cx,cy,dx,dy;
-  cin >> ax >> ay >> bx >> by >> cx >> cy >> dx >> dy;
+  cin >> ax >> ay; cin >> bx >> by;
+  cin >> cx >> cy; cin >> dx >> dy;
+  int n1 = flag(ax,ay,bx,by,dx,dy);
+  int n2 = flag(bx,by,cx,cy,ax,ay);
+  int n3 = flag(cx,cy,dx,dy,bx,by);
+  int n4 = flag(dx,dy,cx,cy,ax,ay);
 
-  double t1 = getAngle(ax,ay,bx,by,dx,dy);
-  double t2 = getAngle(bx,by,ax,ay,cx,cy);
-  double t3 = getAngle(cx,cy,bx,by,dx,dy);
-  double t4 = getAngle(dx,dy,ax,ay,cx,cy);
-
-  if((t1 < 180 && t2 < 180 && t3 < 180 && t4 < 180) && (t1 + t2 + t3 + t4 == 360)) cout << "Yes" << endl;
-  else cout << "No" << endl;
+  if(n1&&n2&&n3&&n4) {
+    cout << "Yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
+  return 0;
 }
