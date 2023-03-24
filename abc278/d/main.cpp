@@ -47,7 +47,6 @@ int isPrime(int x) {
 int main() {
   int n; cin >> n;
   vector<ll> a(n);
-  // vector<ll> b(n);
   map<ll,ll> mp;
   map<ll,ll> b;
   rep(i,n) {
@@ -63,10 +62,10 @@ int main() {
   rep(j,q) {
     int k; cin >> k;
     if(k == 1) {
-    ll i; cin >> i;
-    num = i;
-    mp.clear();
-    b.clear();
+      ll i; cin >> i;
+      num = i;
+      mp.clear();
+      b.clear();
     }
     if(k == 2) {
       ll i,x; cin >> i >> x;

@@ -8,8 +8,16 @@ using namespace std;
 typedef long long ll;
 const ll INF = 1000000000000000000LL;
 const int inf = 1e9+7;
+const ll mod = 998244353;
 
 int main() {
-  int n,m,k; cin >> n >> m >> k;
-  vector<vector<int>> dp(n,vector<int>)
+  ll n,m,k; cin >> n >> m >> k;
+  vector dp(n,vector<ll>(k));
+  ll ans = 0;
+
+  rrep(i,1,n) {
+    rrep(j,1,m) {
+      
+    }
+  }
 }

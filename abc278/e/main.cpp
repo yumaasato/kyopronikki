@@ -1,26 +1,4 @@
-#include <algorithm>
-#include <iomanip>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <cmath>
-#include <cstdio>
-#include <deque>
-#include <functional>
-#include <iostream>
-#include <iterator>
-#include <map>
-#include <queue>
-#include <set>
-#include <list>
-#include <string>
-#include <sstream>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <numeric>
-#include <vector>
-#include <climits>
+#include <bits/stdc++.h>
 // #include <atcoder/all>
 using namespace std;
 // using namespace atcoder;
@@ -29,37 +7,88 @@ using namespace std;
 #define drep(i,a,b) for(int i=a;i>=b;i--)
 #define fore(i,a) for(auto &i:a)
 #define all(x) x.begin(), x.end()
+#define rall(x) x.rbegin(), x.rend()
 typedef long long ll;
-const ll INF = 1000000000000000000LL;
-const int inf = 1e9+7;
+void chmax(int & x, int y) { x = max(x,y);}
+void chmin(int & x, int y) { x = min(x,y);}
+// const ll INF = 1000000000000000000LL;
+// const int inf = 1e9+7;
 // using mint = modint998244353;
+const int dx[4] = { 1,0,-1,0 };
+const int dy[4] = { 0,1,0,-1 };
 using P = pair<int, int>;
+using Graph = vector<vector<int>>;
+using pq = priority_queue<pair<int,int>,vector<pair<int,int>>, greater<pair<int,int>>>;
+
+// void dfs(int pos) {
+//    visited[pos] = true;
+//    rep(i,g[pos].size()) {
+//         int nex = g[pos][i];
+//         if(visited[nex] == false) dfs(nex);
+//    return;
+// }
+
+vector<P> prime_factorize(ll n) {
+  vector<P> res;
+  for (ll p = 2; p * p <= n; ++p) {
+  if (n % p != 0) continue;
+    int num = 0;
+    while (n % p == 0) { ++num; n /= p; }
+    res.push_back(make_pair(p, num));
+  }
+  if (n != 1) res.push_back(make_pair(n, 1));
+  return res;
+}
+
+int isPrime(int x) {
+  int i;
+    if(x<2) return 0;
+    else if(x==2) return 1;
+    if(x%2==0) return 0;
+  for(i = 3; i*i <= x; i+= 2) {
+    if(x%i == 0) return 0;
+  }
+  return 1;
+}
+
+int calc_digit(ll n) {
+  int res = 0;
+  while(n) {
+    ++res;
+    n /= 10;
+  }
+  return res;
+}
 
 int main() {
-  int H,W,n,h,w; cin >> H >> W >> n >> h >> w;
-  vector<vector<int> > a(H+1,vector<int>(W+1));
-  vector sum(max_num, vector(H + 1, vector<ll>(W + 1)));
-  set<int> st;
-  set<int> e;
+  int H,W,N,h,w;
+  cin >> H >> W >> N >> h >> w;
+  vector<int> minX(N,H+1);
+  vector<int> maxX(N,0);
+  vector<int> minY(N,W+1);
+  vector<int> maxY(N,0);
 
   rrep(i,1,H)rrep(j,1,W) {
-    cin >> a[i][j];
-    st.insert(a[i][j]);
+    int a; cin >> a;
+    --a;
+    minX[a] = min(minX[a],i);
+    maxX[a] = max(maxX[a],i);
+    minY[a] = min(minY[a],j);
+    maxY[a] = max(maxY[a],j);
   }
-  rrep(k,0,H-h) {
-    rrep(l,0,W-w) {
-      rrep(i,k,k+h)rrep(j,l,l+w) {
-        e.insert(a[i][j]);
-      }
-    if(e.size() == 0) {
-      cout << st.size() << " ";
-    } else {
 
-    cout << st.size() - e.size() << " ";
-    }
+  rrep(i,0,H-h) {
+    rrep(j,0,W-w) {
+      int k = i + h, l = j + w,ans = N;
+      rep(a,N) {
+        if(i < minX[a] and maxX[a] <= k and j < minY[a] and maxY[a] <= l) {
+          ans--;
+        }
+      }
+      if(j) cout << " ";
+      cout << ans;
     }
     cout << endl;
   }
-
   return 0;
 }

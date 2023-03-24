@@ -1,44 +1,57 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iomanip>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <deque>
+#include <functional>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <queue>
+#include <set>
+#include <list>
+#include <string>
+#include <sstream>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <numeric>
+#include <vector>
+#include <climits>
 #include <atcoder/all>
 using namespace std;
 using namespace atcoder;
 #define rep(i,a) for(int i=0;i<a;i++)
-#define rrep(i,a,b) for(int i=a;i<=b;i++)
-#define drep(i,a,b) for(int i=a;i>=b;i--)
-#define fore(i,a) for(auto &i:a)
-#define all(x) x.begin(), x.end()
-typedef long long ll;
-const ll INF = 1000000000000000000LL;
-const int inf = 1e9+7;
-// using mint = modint998244353;
-using P = pair<int, int>;
 
 int main() {
   int n,m,k; cin >> n >> m >> k;
-  vector<int> s(n);
-  vector<vector<int> > t(n);
-
   dsu uf(n);
+  vector<int> f(n), g[n];
+
   rep(i,m) {
     int a,b; cin >> a >> b;
     a--; b--;
-    s[a]++; s[b]++;
+    f[a]++; f[b]++;
     uf.merge(a,b);
   }
+
   rep(i,k) {
     int c,d; cin >> c >> d;
     c--; d--;
-    t[c].push_back(d);
-    t[d].push_back(c);
+    g[c].push_back(d);
+    g[d].push_back(c);
   }
 
-  rep(i,n) {
-    int ans = uf.size(i)-1-s[i];
-    for(int u : t[i]) {
-      if(uf.same(i,u)) --ans;
+  rep (i,n) {
+    int ans = uf.size(i) - 1 - f[i];
+    for(auto ex : g[i]) {
+      if(uf.same(ex,i)) ans--;
     }
-    if(i) printf(" ");
-    printf("%d", ans);
+    if(i) cout << " ";
+    cout << ans;
   }
   cout << endl;
   return 0;

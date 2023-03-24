@@ -15,6 +15,8 @@ using P = pair<int, int>;
 
 int main() {
   int n; cin >> n;
-  cout << n << endl;
+  if(n <= 125) cout << 4 << endl;
+  else if(n <= 211 && n >= 126) cout << 6 << endl;
+  else cout << 8 << endl;
   return 0;
 }
